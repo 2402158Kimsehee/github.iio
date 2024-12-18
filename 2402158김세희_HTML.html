@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <title>2402158김세희_기말과제</title>
+    <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1">
+    <style>
+        * { margin: 0; padding: 0;}
+        body {
+            font-family : 'Poppins', Arial, sans-serif;
+            margin: 0 auto;
+            background-color: #db9370;
+        }
+
+        /* header */
+        header {
+            background: #db9370;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+        }
+
+        /* 검색창 */
+        .input-search {
+            font-size: 13px;
+            padding: 6px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .input-search[type="submit"] {
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* 로고 */
+        header h1 {
+            font-size: 24px;
+        }
+        /* 내비게이션 */
+        header nav {
+            display: flex;
+            gap: 15px;
+            position: relative;
+        }
+        /* 내비게이션 > 카테고리, 장바구니 */
+        header nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+        /* 카테고리, 장바구니에 마우스를 올리면, 글자색 변경 */
+        header nav a:hover {
+            color: #ff9d00f1; 
+        }
+        /* 카테고리 > 드롭다운 메뉴 */
+        header nav .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%; 
+            left: 0;
+            background-color: #333;
+            padding: 10px 0;
+            list-style: none;
+            margin: 0;
+            width: max-content;
+        }
+        /* 드롭다운 메뉴 */
+        header nav .dropdown li {
+            padding: 10px 20px;
+        }
+        /* 드롭다운 메뉴 > 목록 */
+        header nav .dropdown li a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 10px 20px;
+        }
+        /* 목록에 마우스를 올리면, 배경색 변경 */
+        header nav .dropdown li a:hover {
+            background-color: #555;
+        }
+        /* 드롭다운 메뉴 보이기 */
+        header nav a:hover + .dropdown {
+            display: block; 
+        }
+        /* 드롭다운 메뉴 숨기기 */
+        header nav .dropdown.show {
+            display: block; 
+        }
+        /* 배너 설정 */
+        .banner {
+            background: url('https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20160802_280%2Fzenzang75_14701325016397tzyv_JPEG%2FIMG_4548.jpg&type=sc960_832');
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        .banner h2 {
+            font-size: 24px;
+        }
+        /* 상품 배열 설정 */
+        .products {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr; 
+            gap: 20px; 
+            padding: 20px; 
+        }
+        .product {
+            background: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .product img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        .product h3 {
+            margin: 15px 0 10px;
+            font-size: 15px;
+        }
+        .product p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+        /* [장바구니에 담기] 설정 */
+        .product button {
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 8px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        /* [장바구니에 담기]에 마우스를 올리면, 배경색 변경 */
+        .product button:hover {
+            background: #555;
+        }
+        /* 하단 */
+        footer {
+            text-align: left;
+            padding: 10px;
+            background: #333;
+            color: #fff;
+            line-height: 1.8;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        /* 화면 크기에 따라 페이지의 레이아웃 변경 */
+        @media (max-width: 1024px) {
+            .products {
+                grid-template-columns: 1fr 1fr 1fr; 
+            }
+        }
+        @media (max-width: 768px) {
+            .products {
+                grid-template-columns: 1fr 1fr; 
+            }
+        }
+        @media (max-width: 480px) {
+            .products {
+                grid-template-columns: 1fr; 
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- header -->
+    <header>
+        <h1>shmall</h1>
+        <div>
+            <form action="기말고사.html" method="get">
+                <input type="text" class="input-search" placeholder="검색어를 입력하세요.">
+                <input type="submit" class="input-search" value="검색">
+            </form>
+        </div>
+        <nav>
+            <a href="#" id="category-link">카테고리</a>
+            <ul class="dropdown">
+                <li><a href="#">전체보기</a></li>
+                <li><a href="#">상의</a></li>
+                <li><a href="#">아우터</a></li>
+                <li><a href="#">바지</a></li>
+                <li><a href="#">원피스/스커트</a></li>
+                <li><a href="#">신발</a></li>
+                <li><a href="#">가방</a></li>
+            </ul>
+            <a href="#">장바구니</a>
+        </nav>
+    </header>
+
+    <div class="banner">
+        <h2>따스함을 더하는 특별한 가을 컬렉션을 만나보세요!</h2>
+    </div>
+
+    <!-- section -->
+    <section class="products">
+        <div class="product">
+            <img src="product1-1.png" alt="곰돌이 니트">
+            <h3>곰돌이니트</h3>
+            <p>45,000</p>
+            <button onclick="addCart('곰돌이니트')">장바구니에 담기</button>
+        </div>
+        <div class="product">
+            <img src="product2-1.jpg" alt="와이드 팬츠">
+            <h3>와이드팬츠</h3>
+            <p>35,000</p>
+            <button onclick="addCart('와이드팬츠')">장바구니에 담기</button>
+        </div>
+        <div class="product">
+            <img src="product3-1.jpg" alt="노르딕 꽈배기 니트">
+            <h3>노르딕 꽈배기 니트</h3>
+            <p>56,000</p>
+            <button onclick="addCart('노르딕 꽈배기 니트')">장바구니에 담기</button>
+        </div>
+        <div class="product">
+            <img src="product4-1.jpg" alt="무스탕 자켓">
+            <h3>무스탕 자켓</h3>
+            <p>79,000</p>
+            <button onclick="addCart('무스탕 자켓')">장바구니에 담기</button>
+        </div>
+        <div class="product">
+            <img src="product5-1.png" alt="카모메 가디건">
+            <h3>카모메 가디건</h3>
+            <p>45,000</p>
+            <button onclick="addCart('카모메 가디건')">장바구니에 담기</button>
+        </div>
+        <div class="product">
+            <img src="product6-1.png" alt="니트 원피스">
+            <h3>니트 원피스</h3>
+            <p>65,000</p>
+            <button onclick="addCart('니트 원피스')">장바구니에 담기</button>
+        </div>
+        <div class="product">
+            <img src="product7-1.jpg" alt="뽀글이 단화">
+            <h3>뽀글이 단화</h3>
+            <p>55,000</p>
+            <button onclick="addCart('뽀글이 단화')">장바구니에 담기</button>
+        </div>
+        <div class="product">
+            <img src="product8-1.png" alt="리본 니트 티셔츠">
+            <h3>리본 니트 티셔츠</h3>
+            <p>55,000</p>
+            <button onclick="addCart('리본 니트 티셔츠')">장바구니에 담기</button>
+        </div>
+        <div class="product">
+            <img src="product9-1.png" alt="뽀글이 숄더백">
+            <h3>뽀글이 숄더백</h3>
+            <p>65,000</p>
+            <button onclick="addCart('뽀글이 숄더백')">장바구니에 담기</button>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+        <br>
+        <p>사업자 등록번호: 123-45-67890</p>
+        <p>주소: 서울특별시 성동구 살곶이길 200</p>
+        <p>고객센터: 02-1234-5678 (운영시간: 평일 09:00~18:00, 주말/공휴일 휴무)</p>
+        <br>
+    </footer>
+
+    <!-- script -->
+    <script>
+        // 카테고리 클릭 시 드롭다운 메뉴 보이기&숨기기
+        const categoryLink = document.getElementById('category-link');
+        const dropdown = document.querySelector('.dropdown');
+
+        categoryLink.addEventListener('click', function(event) {
+            event.preventDefault(); 
+            dropdown.classList.toggle('show'); 
+        });
+
+        // 장바구니에 상품 추가 시, 알럿 띄우기
+        function addCart(productName) {
+            alert(`${productName}이(가) 장바구니에 추가되었습니다!`);
+        }
+    </script>
+</body>
+</html>
